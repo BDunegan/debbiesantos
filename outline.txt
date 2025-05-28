@@ -1,0 +1,70 @@
+Debbie Santos Website – GenAI Step-by-Step Design Order Recommendations
+
+1. Initialize Project & Global Theme
+   - Scaffold new Next.js app with TypeScript and App Router.
+   - Install/configure Styled Components (with SSR).
+   - Define theme variables (A&M Maroon #500000, purples #7F4C8B/#CDB4DB, neutrals).
+   - Set global font (accessible, modern sans-serif).
+   - Add CSS reset/base style if needed (via styled-components).
+   - Connect repo to Vercel for CI/CD and live preview.
+
+2. Plan and Structure the Site
+   - Define routes/pages in /src/app: /, /about, /services, /contact, /policies.
+   - Draft sitemap and navigation order.
+   - Plan out page sections and component hierarchy.
+
+3. Build Shared Layout Components First
+   - Create MainLayout with ARIA landmarks.
+   - Build Header (responsive nav, logo, mobile menu).
+   - Build Footer (contact info, quick links, copyright).
+   - Add SEO/Meta utility (dynamic title, meta).
+   - Implement skip-to-content, focus outline, semantic structure.
+
+4. Develop Atomic & Reusable Components
+   - Create Button, Card, Modal, Alert/Toast, Loader/Spinner.
+   - Ensure all atomic components are responsive, focus-visible, meet tap size standards.
+   - Test atomic components at all common breakpoints before composition.
+
+5. Page-by-Page Component Assembly (Mobile-First)
+   - For each page, develop sections/components in order:
+     - Home: HeroSection, ServicesOverview, AboutPreview, CallToAction
+     - About: BioSection, PhilosophySection, QualificationsList, CallToAction
+     - Services: ServicesList (with ServiceCard), TargetAudienceSection, FAQSection, CallToAction
+     - Contact: ContactForm (validation, aria-live), ContactDetails, Success/ErrorMessage
+     - Policies: PoliciesContent, DownloadableForms, FAQSection
+   - Style at 375px first, add tablet/desktop breakpoints via media queries.
+   - Use only relative units in sizing, spacing, typography.
+
+6. Integrate Content, Imagery & Local SEO
+   - Migrate/adapt text, imagery, forms from bartcounseling.com.
+   - Add meaningful alt text to all images/icons.
+   - Ensure contact details, office address, and service area are visible on Contact/Footer.
+   - Add LocalBusiness schema markup.
+
+7. SEO Optimization
+   - Set unique <title> and <meta name="description"> for each page.
+   - Add Open Graph and Twitter Card tags with branded images.
+   - Use semantic heading order (one h1 per page, logical h2/h3).
+   - Optimize images with Next.js Image component (WebP/AVIF).
+   - Generate sitemap.xml and robots.txt.
+   - Use short, lowercase, keyword-rich URLs.
+
+8. Accessibility Review
+   - Test keyboard navigation and focus for all interactive elements.
+   - Check color contrast for all color combinations (maroon/purples).
+   - Use screen reader for forms, nav, feedback.
+   - Confirm 44x44px tap targets for all interactive elements.
+   - Add aria-live for form feedback and skip-to-content if needed.
+
+9. Device & Breakpoint Testing
+   - Use browser/dev tools and real devices for all breakpoints.
+   - Ensure responsive typography, images, layouts on all screens.
+   - Verify no fixed/rigid sizes in any CSS/styled-components.
+
+10. Final QA, Handover, and Launch
+    - Run Lighthouse/axe-core for a11y, SEO, and performance.
+    - Get client review for visuals/branding/copy.
+    - Deploy to Vercel, connect domain.
+    - Deliver documentation and editing guide.
+
+Strictly follow this order, validating and checking into version control at each milestone.

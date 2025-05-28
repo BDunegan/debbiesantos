@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@/lib/theme";
+import GlobalStyle from "@/lib/GlobalStyle";
 import "./globals.css";
+import MainLayout from "@/components/MainLayout";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import LocalBusinessSchema from "@/components/SEO/LocalBusinessSchema";
+import Providers from "@/components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +33,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Default Open Graph & Twitter Card tags */}
+        <meta property="og:title" content="Debbie Santos Counseling" />
+        <meta property="og:description" content="Empowering you to thrive with compassionate, expert support in College Station, TX." />
+        <meta property="og:image" content="/og-image.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://debbiesantos.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Debbie Santos Counseling" />
+        <meta name="twitter:description" content="Empowering you to thrive with compassionate, expert support in College Station, TX." />
+        <meta name="twitter:image" content="/og-image.png" />
+        <LocalBusinessSchema />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Providers>
+          <MainLayout header={<Header />} footer={<Footer />}>
         {children}
+          </MainLayout>
+        </Providers>
       </body>
     </html>
   );
