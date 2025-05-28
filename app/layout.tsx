@@ -49,7 +49,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
           <MainLayout header={<Header />} footer={<Footer />}>
-        {children}
+            {children}
           </MainLayout>
         </Providers>
       </body>
