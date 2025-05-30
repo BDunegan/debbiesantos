@@ -14,6 +14,13 @@ const Spinner = styled.div`
   border-top: 4px solid ${({ theme }) => theme.colors.maroon};
   border-radius: 50%;
   animation: ${spin} 0.8s linear infinite;
+  margin: 0 auto;
+  opacity: 1;
+  animation: ${spin} 0.8s linear infinite, fadeIn 0.3s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 `;
 
 /**

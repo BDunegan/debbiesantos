@@ -1,17 +1,11 @@
-import ContactForm from "@/components/contact/ContactForm";
-import ContactDetails from "@/components/contact/ContactDetails";
-import PageContainer from "@/components/PageContainer";
+import { Metadata } from "next";
+import ContactContent from "@/components/contact/ContactContent";
 
-export const metadata = {
-  title: "Contact Debbie Santos | Debbie Santos Counseling",
-  description: "Contact Debbie Santos for counseling appointments, questions, or more information. Serving College Station, TX and surrounding areas.",
+export const metadata: Metadata = {
+  title: "Contact | Debbie Santos",
+  description: "Get in touch with Debbie Santos for therapy and counseling services. Schedule a consultation or learn more about available services.",
 };
 
-export default function ContactPage() {
-  return (
-    <PageContainer>
-      <ContactForm />
-      <ContactDetails />
-    </PageContainer>
-  );
+export default function Contact() {
+  return <ContactContent />;
 } 

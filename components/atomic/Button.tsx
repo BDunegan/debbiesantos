@@ -14,19 +14,19 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const StyledButton = styled.button<{ variant: ButtonVariant }>`
   min-width: 44px;
   min-height: 44px;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  padding: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.md};
+  border-radius: 999px;
   border: none;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.12s;
   outline: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: ${({ theme }) => theme.shadow.sm};
   ${({ variant, theme }) =>
     variant === "primary"
       ? css`
@@ -35,6 +35,9 @@ const StyledButton = styled.button<{ variant: ButtonVariant }>`
           &:hover,
           &:focus-visible {
             background: ${theme.colors.purple};
+            color: #fff;
+            transform: scale(1.04);
+            box-shadow: ${theme.shadow.md};
           }
         `
       : css`
@@ -45,10 +48,16 @@ const StyledButton = styled.button<{ variant: ButtonVariant }>`
           &:focus-visible {
             background: ${theme.colors.purpleLight};
             color: ${theme.colors.maroon};
+            transform: scale(1.04);
+            box-shadow: ${theme.shadow.md};
           }
         `}
   &:focus-visible {
-    box-shadow: 0 0 0 3px ${props => props.theme.colors.purple};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.purpleAccent};
+  }
+  @media (max-width: 600px) {
+    font-size: 0.98rem;
+    padding: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.sm};
   }
 `;
 

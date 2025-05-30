@@ -1,53 +1,168 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import { Card } from "@/components/atomic/Card";
+import { theme } from "@/lib/theme";
 
 const Section = styled.section`
-  padding: 2rem 1rem 1rem 1rem;
+  padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.sm};
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 `;
-const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
+
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.font.subheading};
+  color: ${({ theme }) => theme.colors.maroon};
+  margin-bottom: ${({ theme }) => theme.space.xl};
   text-align: center;
 `;
-const List = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
+
+const ContentWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: ${({ theme }) => theme.space.xl};
+  padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    grid-template-columns: 1fr;
+    gap: ${({ theme }) => theme.space.lg};
+  }
 `;
 
-const services = [
-  "Addiction And Recovery",
-  "Conflict Resolution",
-  "Depression And Anxiety",
-  "Eating Disorders",
-  "Grief and Loss",
-  "Grief Counseling",
-  "Intimacy and Relationship Issues",
-  "Panic Attacks and Panic Disorder",
-  "Phobias",
-  "Stress Management",
-  "Work and Career Issues"
-];
+const ServiceColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space.lg};
+  padding: ${({ theme }) => theme.space.lg};
+  position: relative;
+  transition: transform 0.3s ease;
 
-const ServicesList: React.FC = (): React.ReactElement => {
-  return (
-    <Section>
-      <Card boxShadow="0 4px 24px rgba(0,0,0,0.18)">
-        <Title>Therapy for Individuals</Title>
-        <h3 style={{ margin: '1rem 0 0.5rem 0' }}>Featured Services</h3>
-        <List>
-          {services.map((service) => (
-            <Card key={service} boxShadow="0 2px 8px rgba(0,0,0,0.10)" style={{ margin: '0.5rem 0' }}>
-              <strong>{service}</strong>
-            </Card>
-          ))}
-        </List>
-      </Card>
-    </Section>
-  );
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  &:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -${({ theme }) => theme.space.xl};
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, ${({ theme }) => theme.colors.purpleLight}, transparent);
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    &:not(:first-child)::before {
+      display: none;
+    }
+    border-bottom: 2px solid ${({ theme }) => theme.colors.purpleLight};
+    padding-bottom: ${({ theme }) => theme.space.xl};
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+`;
+
+const CategoryTitle = styled.h3`
+  font-size: ${({ theme }) => theme.font.size};
+  color: ${({ theme }) => theme.colors.purple};
+  margin-bottom: ${({ theme }) => theme.space.md};
+  font-weight: 600;
+`;
+
+const List = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space.md};
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  align-items: flex-start;
+  gap: ${({ theme }) => theme.space.sm};
+  font-size: ${({ theme }) => theme.font.size};
+  color: ${({ theme }) => theme.colors.neutral700};
+  line-height: 1.5;
+  position: relative;
+  padding-left: ${({ theme }) => theme.space.lg};
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.colors.purpleLight};
+  }
+`;
+
+const services = {
+  individual: [
+    "Addiction And Recovery",
+    "Depression And Anxiety",
+    "Eating Disorders",
+    "Grief and Loss",
+    "Panic Attacks and Panic Disorder",
+    "Phobias",
+    "Stress Management"
+  ],
+  relationships: [
+    "Couples Counseling",
+    "Family Therapy",
+    "Conflict Resolution",
+    "Intimacy and Relationship Issues",
+    "Communication Skills",
+    "Trust Building",
+    "Blended Family Support"
+  ],
+  professional: [
+    "Work and Career Issues",
+    "Professional Development",
+    "Work-Life Balance",
+    "Leadership Skills",
+    "Team Dynamics",
+    "Career Transitions",
+    "Burnout Prevention"
+  ]
 };
 
-export default ServicesList; 
+export default function ServicesList() {
+  return (
+    <Section>
+      <Title>Our Services</Title>
+      <ContentWrapper>
+        <ServiceColumn>
+          <CategoryTitle>Individual Counseling</CategoryTitle>
+          <List>
+            {services.individual.map((service) => (
+              <ListItem key={service}>{service}</ListItem>
+            ))}
+          </List>
+        </ServiceColumn>
+        <ServiceColumn>
+          <CategoryTitle>Relationships</CategoryTitle>
+          <List>
+            {services.relationships.map((service) => (
+              <ListItem key={service}>{service}</ListItem>
+            ))}
+          </List>
+        </ServiceColumn>
+        <ServiceColumn>
+          <CategoryTitle>Professional Development</CategoryTitle>
+          <List>
+            {services.professional.map((service) => (
+              <ListItem key={service}>{service}</ListItem>
+            ))}
+          </List>
+        </ServiceColumn>
+      </ContentWrapper>
+    </Section>
+  );
+} 

@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/lib/theme";
 import GlobalStyle from "@/lib/GlobalStyle";
@@ -15,12 +14,10 @@ interface ProvidersProps {
  * @returns {React.ReactElement}
  */
 const Providers: React.FC<ProvidersProps> = ({ children }): React.ReactElement => (
-  <StyledComponentsRegistry>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {children}
-    </ThemeProvider>
-  </StyledComponentsRegistry>
+  <ThemeProvider theme={theme}>
+    <GlobalStyle />
+    {children}
+  </ThemeProvider>
 );
 
 export default Providers; 

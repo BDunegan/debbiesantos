@@ -11,14 +11,15 @@ interface CardProps {
 
 const StyledCard = styled.div<{ $boxShadow?: string }>`
   background: ${({ theme }) => theme.colors.white};
-  border-radius: 16px;
-  box-shadow: ${({ $boxShadow }) => $boxShadow || '0 2px 8px rgba(0,0,0,0.06)'};
-  padding: 2rem;
+  border-radius: ${({ theme }) => theme.radius.md};
+  box-shadow: ${({ $boxShadow, theme }) => $boxShadow || theme.shadow.md};
+  padding: ${({ theme }) => theme.space.md};
   margin: 0 auto;
   max-width: 100%;
   width: 100%;
   @media (min-width: 600px) {
     max-width: 480px;
+    padding: ${({ theme }) => theme.space.lg};
   }
 `;
 

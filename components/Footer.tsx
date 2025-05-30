@@ -9,21 +9,21 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const FooterWrapper = styled.footer`
-  background: ${({ theme }) => theme.colors.purple};
-  color: #fff;
-  padding: 2rem 0;
+  background: ${({ theme }) => theme.colors.maroon};
+  color: ${({ theme }) => theme.colors.white};
+  padding: ${({ theme }) => theme.space.md} ${({ theme }) => theme.space.sm};
   text-align: center;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  box-shadow: ${({ theme }) => theme.shadow.sm};
 `;
 const ContactInfo = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.space.sm};
 `;
 const FooterLinks = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.space.sm};
 `;
 const FooterLink = styled(Link)`
-  color: #fff;
-  margin: 0 1rem;
+  color: ${({ theme }) => theme.colors.white};
+  margin: 0 ${({ theme }) => theme.space.xs};
   text-decoration: none;
   &:hover,
   &:focus {
@@ -32,7 +32,7 @@ const FooterLink = styled(Link)`
   }
 `;
 const Copyright = styled.div`
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.font.small};
 `;
 
 const Footer: React.FC = (): React.ReactElement => (

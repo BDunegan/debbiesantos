@@ -1,47 +1,116 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { theme } from "@/lib/theme";
 
 const Section = styled.section`
-  padding: 2rem 1rem 1rem 1rem;
-`;
-const Title = styled.h2`
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
+  padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.sm};
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  max-width: 400px;
-`;
-const Q = styled.dt`
-  font-weight: bold;
-  margin-top: 1rem;
-`;
-const A = styled.dd`
-  margin-bottom: 1rem;
-`;
-const Card = styled.div`
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  position: relative;
 `;
 
+const Title = styled.h2`
+  font-size: ${({ theme }) => theme.font.subheading};
+  color: ${({ theme }) => theme.colors.maroon};
+  margin-bottom: ${({ theme }) => theme.space.xl};
+  text-align: center;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.space.lg};
+  padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.md};
+`;
+
+const FAQItem = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.colors.purpleLight};
+  padding: ${({ theme }) => theme.space.md} 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const Question = styled.div<{ isOpen: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: ${({ theme }) => theme.font.size};
+  color: ${({ theme }) => theme.colors.purple};
+  font-weight: 600;
+  padding: ${({ theme }) => theme.space.sm} 0;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.maroon};
+  }
+
+  &::after {
+    content: '${({ isOpen }) => isOpen ? '−' : '+'}';
+    font-size: 1.5rem;
+    color: ${({ theme }) => theme.colors.purple};
+  }
+`;
+
+const Answer = styled.div<{ isOpen: boolean }>`
+  max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: ${({ isOpen, theme }) => (isOpen ? theme.space.md : '0')} 0;
+  color: ${({ theme }) => theme.colors.neutral700};
+  line-height: 1.7;
+`;
+
+const faqs = [
+  {
+    question: "What can I expect in the first session?",
+    answer: "The first session is an opportunity for us to get to know each other and discuss your goals. We'll review your history, current concerns, and develop a plan for moving forward. This session helps establish a foundation for our therapeutic relationship."
+  },
+  {
+    question: "How long are therapy sessions?",
+    answer: "Standard therapy sessions are 50 minutes long. Extended sessions of 80 minutes are available for couples or when needed. The frequency of sessions is typically weekly, but we can adjust based on your needs and progress."
+  },
+  {
+    question: "Do you accept insurance?",
+    answer: "I am an out-of-network provider. While I don't directly accept insurance, I can provide you with a superbill that you can submit to your insurance company for potential reimbursement. Please check with your insurance provider about your out-of-network benefits."
+  },
+  {
+    question: "What is your cancellation policy?",
+    answer: "I require 24 hours notice for cancellations. Late cancellations or no-shows may be subject to a fee. This policy helps ensure that appointment times are available for those who need them."
+  },
+  {
+    question: "How do I know if therapy is right for me?",
+    answer: "Therapy can be beneficial for anyone looking to improve their mental health, relationships, or overall well-being. If you're experiencing challenges in your life, feeling stuck, or want to make positive changes, therapy can provide the support and tools you need."
+  }
+];
+
 export default function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
     <Section>
-      <Card style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.18)' }}>
-        <Title>Frequently Asked Questions</Title>
-        <dl>
-          <Q>How is my privacy protected?</Q>
-          <A>Your information is kept confidential according to HIPAA guidelines.</A>
-          <Q>Where can I find your office policies?</Q>
-          <A>All office and privacy policies are available on this page and as downloadable forms.</A>
-        </dl>
-      </Card>
+      <Title>Frequently Asked Questions</Title>
+      <ContentWrapper>
+        {faqs.map((faq, index) => (
+          <FAQItem key={index} onClick={() => toggleFAQ(index)}>
+            <Question isOpen={openIndex === index}>
+              {faq.question}
+            </Question>
+            <Answer isOpen={openIndex === index}>
+              {faq.answer}
+            </Answer>
+          </FAQItem>
+        ))}
+      </ContentWrapper>
     </Section>
   );
 } 

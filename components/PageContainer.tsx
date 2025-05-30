@@ -9,14 +9,14 @@ interface PageContainerProps {
 }
 
 const Container = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT}px);
+  min-height: calc(100vh - ${HEADER_HEIGHT});
   width: 100%;
   background: ${({ theme }) => theme.colors.neutral100 || "#faf9f6"};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem 0 2rem 0;
+  padding: calc(${HEADER_HEIGHT} + 2rem) 0 2rem 0;
   box-sizing: border-box;
 `;
 

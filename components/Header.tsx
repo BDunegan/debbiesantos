@@ -3,104 +3,191 @@
  * Header component with logo, navigation, and responsive mobile menu.
  * @returns {JSX.Element}
  */
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
+import { theme } from "@/lib/theme";
 
-export const HEADER_HEIGHT = 72;
-const Nav = styled.nav`
+export const HEADER_HEIGHT = "10vh";
+
+const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  height: ${HEADER_HEIGHT}px;
-  padding: 0 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: ${HEADER_HEIGHT};
   background: ${({ theme }) => theme.colors.maroon};
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 ${({ theme }) => theme.space.lg};
+  box-sizing: border-box;
+  border-radius: 0 0 20px 20px;
+  transition: all 0.3s ease;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 100vw;
+    border-radius: 0;
+  }
 `;
-const NavInner = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  position: relative;
-`;
+
 const Logo = styled(Link)`
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.25rem;
-  text-decoration: none;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.white};
+  font-weight: 600;
+  font-size: ${({ theme }) => theme.font.subheading};
+  transition: opacity 0.2s ease;
+  gap: ${({ theme }) => theme.space.sm};
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.font.size};
+  }
 `;
-const NavLinks = styled.div<{ open?: boolean }>`
+
+const LogoImage = styled(Image)`
+  border-radius: ${({ theme }) => theme.radius.sm};
+  background: ${({ theme }) => theme.colors.white};
+  object-fit: contain;
+`;
+
+const Nav = styled.nav`
   display: flex;
-  gap: 2rem;
-  @media (max-width: 700px) {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
+  align-items: center;
+  gap: ${({ theme }) => theme.space.md};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    position: fixed;
+    top: ${HEADER_HEIGHT};
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    width: 80vw;
     background: ${({ theme }) => theme.colors.maroon};
+    padding: ${({ theme }) => theme.space.md};
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    padding: 1rem 0;
-    z-index: 10;
-    display: ${({ open }) => (open ? "flex" : "none")};
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 20px 20px;
+
+    &.open {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
   }
 `;
+
 const NavLink = styled(Link)`
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   text-decoration: none;
   font-weight: 500;
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 0.5rem 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: ${({ theme }) => theme.colors.white};
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: 1.1rem;
+    padding: ${({ theme }) => theme.space.sm} 0;
   }
 `;
-const MobileMenuButton = styled.button`
-  margin-left: auto;
+
+const MenuButton = styled.button`
+  display: none;
   background: none;
   border: none;
-  color: #fff;
-  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 1.5rem;
   cursor: pointer;
-  min-width: 44px;
-  min-height: 44px;
-  display: none;
-  @media (max-width: 700px) {
+  padding: 0.5rem;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
   }
 `;
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth > parseInt(theme.breakpoints.md)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Nav aria-label="Main navigation">
-      <NavInner>
-        <Logo href="/" aria-label="Debbie Santos Home">
-          <span style={{ marginRight: 8 }}>🧠</span>Debbie Santos
-        </Logo>
-        <NavLinks open={menuOpen} aria-label="Main menu">
-          <NavLink href="/about">About</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
-          <NavLink href="/policies">Policies</NavLink>
-        </NavLinks>
-        <MobileMenuButton
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="main-menu"
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          {menuOpen ? "✕" : "☰"}
-        </MobileMenuButton>
-      </NavInner>
-    </Nav>
+    <HeaderContainer>
+      <Logo href="/">
+        <LogoImage
+          src="/logo.jpg"
+          alt="Debbie Santos Logo"
+          width={200}
+          height={50}
+          priority
+        />
+        Debbie Santos
+      </Logo>
+      <MenuButton
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+        aria-expanded={isMenuOpen}
+      >
+        {isMenuOpen ? "✕" : "☰"}
+      </MenuButton>
+      <Nav ref={navRef} className={isMenuOpen ? "open" : ""} aria-label="Main navigation">
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/services">Services</NavLink>
+        <NavLink href="/contact">Contact</NavLink>
+      </Nav>
+    </HeaderContainer>
   );
 } 

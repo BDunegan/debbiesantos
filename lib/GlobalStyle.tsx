@@ -1,10 +1,14 @@
 import { createGlobalStyle } from "styled-components";
 import type { DefaultTheme } from "styled-components";
 
+// Extend DefaultTheme to include custom theme properties
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: typeof import("./theme").theme.colors;
     font: typeof import("./theme").theme.font;
+    space: typeof import("./theme").theme.space;
+    radius: typeof import("./theme").theme.radius;
+    shadow: typeof import("./theme").theme.shadow;
   }
 }
 

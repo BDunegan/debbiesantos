@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 type AlertType = "success" | "error" | "info" | "warning";
@@ -12,9 +12,9 @@ interface AlertProps {
 
 const typeStyles = {
   success: css`
-    background: ${({ theme }) => theme.colors.neutral200};
-    color: ${({ theme }) => theme.colors.maroon};
-    border-left: 6px solid #2ecc40;
+    background: #e6f7e9;
+    color: #1e4620;
+    border-left: 6px solid #4caf50;
   `,
   error: css`
     background: #fff0f0;
@@ -34,11 +34,19 @@ const typeStyles = {
 };
 
 const StyledAlert = styled.div<{ type: AlertType }>`
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  margin: 1rem 0;
+  padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.md};
+  border-radius: ${({ theme }) => theme.radius.sm};
+  margin: ${({ theme }) => theme.space.sm} 0;
   font-size: 1rem;
   font-weight: 500;
+  box-shadow: ${({ theme }) => theme.shadow.sm};
+  position: relative;
+  opacity: 1;
+  animation: fadeIn 0.3s ease;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
   ${({ type }) => typeStyles[type]}
 `;
 
@@ -47,13 +55,20 @@ const StyledAlert = styled.div<{ type: AlertType }>`
  * @param {AlertProps} props
  * @returns {JSX.Element}
  */
-export const Alert: React.FC<AlertProps> = ({ type = "info", children, className }): React.ReactElement => (
-  <StyledAlert
-    type={type}
-    className={className}
-    role="alert"
-    aria-live={type === "error" ? "assertive" : "polite"}
-  >
-    {children}
-  </StyledAlert>
-); 
+export const Alert: React.FC<AlertProps> = ({ type = "info", children, className }) => {
+  const [visible, setVisible] = useState(true);
+  if (!visible) return null;
+  return (
+    <StyledAlert
+      type={type}
+      className={className}
+      role="alert"
+      aria-live={type === "error" ? "assertive" : "polite"}
+    >
+      {children}
+      <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
+        position: 'absolute', top: 8, right: 12, background: 'none', border: 'none', color: 'inherit', fontSize: '1.2em', cursor: 'pointer', opacity: 0.7
+      }}>&times;</button>
+    </StyledAlert>
+  );
+}; 

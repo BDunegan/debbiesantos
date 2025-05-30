@@ -9,36 +9,37 @@ import styled from "styled-components";
 import { Button } from "@/components/atomic/Button";
 import Image from "next/image";
 import { Card } from "@/components/atomic/Card";
+import { theme } from "@/lib/theme";
+import HeroAboutPreview from "./HeroAboutPreview";
 
 const Wrapper = styled.section`
-  padding: 3rem 1rem 2rem 1rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: ${({ theme }) => theme.space.md} ${({ theme }) => theme.space.sm};
   text-align: center;
-  background: ${({ theme }) => theme.colors.maroon};
+  background: linear-gradient(rgba(60, 0, 0, 0.45), rgba(60, 0, 0, 0.55)), url('/sunset.jpg') center center / cover no-repeat;
+  background-attachment: fixed;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  @media (max-width: 700px) {
+    min-height: 70vh;
+    background-attachment: scroll;
+  }
 `;
 const Title = styled.h1`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-`;
-const Subtitle = styled.p`
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
+  font-size: ${({ theme }) => theme.font.heading};
+  margin-bottom: ${({ theme }) => theme.space.sm};
 `;
 
 const HeroSection: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
-      <Card boxShadow="0 4px 24px rgba(0,0,0,0.18)">
-        <Title>Welcome</Title>
-        <Subtitle>
-          Today you are one step closer to a new you where you feel empowered and on a positive path to growth and well-being.
-        </Subtitle>
-        <p style={{ marginBottom: '1.5rem' }}>
-          As a solution-focused therapist, I aim to help you uncover your true potential and lead a life worth celebrating. While we can't change past difficult situations, we can work together to better understand and resolve challenges in your life. By applying complementary therapy approaches and techniques, we will unearth long-standing behavior patterns or negative perceptions that may be holding you back from experiencing a more fulfilling and meaningful life.
-        </p>
-        <p style={{ marginBottom: '1.5rem' }}>
-          If you're looking for extra support and guidance through a challenging situation, or you're just ready to move in a new direction in your life, I look forward to working with you to achieve your goals.
-        </p>
+      <Card boxShadow={theme.shadow.md}>
+        <HeroAboutPreview />
       </Card>
     </Wrapper>
   );
