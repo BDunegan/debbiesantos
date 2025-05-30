@@ -59,16 +59,16 @@ export const Alert: React.FC<AlertProps> = ({ type = "info", children, className
   const [visible, setVisible] = useState(true);
   if (!visible) return null;
   return (
-    <StyledAlert
-      type={type}
-      className={className}
-      role="alert"
-      aria-live={type === "error" ? "assertive" : "polite"}
-    >
-      {children}
+  <StyledAlert
+    type={type}
+    className={className}
+    role="alert"
+    aria-live={type === "error" ? "assertive" : "polite"}
+  >
+    {children}
       <button onClick={() => setVisible(false)} aria-label="Dismiss" style={{
         position: 'absolute', top: 8, right: 12, background: 'none', border: 'none', color: 'inherit', fontSize: '1.2em', cursor: 'pointer', opacity: 0.7
       }}>&times;</button>
-    </StyledAlert>
-  );
+  </StyledAlert>
+); 
 }; 

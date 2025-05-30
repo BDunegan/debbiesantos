@@ -6,7 +6,6 @@ import BioSection from "@/components/about/BioSection";
 import PhilosophySection from "@/components/about/PhilosophySection";
 import QualificationsList from "@/components/about/QualificationsList";
 import CallToAction from "@/components/about/CallToAction";
-import HorizontalLine from "@/components/atomic/HorizontalLine";
 
 const AboutPage = styled.div`
   display: flex;

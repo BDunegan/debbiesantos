@@ -174,7 +174,7 @@ export default function Header() {
           priority
         />
         Debbie Santos
-      </Logo>
+        </Logo>
       <MenuButton
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
@@ -184,10 +184,10 @@ export default function Header() {
       </MenuButton>
       <Nav ref={navRef} className={isMenuOpen ? "open" : ""} aria-label="Main navigation">
         <NavLink href="/">Home</NavLink>
-        <NavLink href="/about">About</NavLink>
-        <NavLink href="/services">Services</NavLink>
-        <NavLink href="/contact">Contact</NavLink>
-      </Nav>
+          <NavLink href="/about">About</NavLink>
+          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
+    </Nav>
     </HeaderContainer>
   );
 } 

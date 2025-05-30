@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Card } from "@/components/atomic/Card";
-import { Button } from "@/components/atomic/Button";
+import Button from "@/components/atomic/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { theme } from "@/lib/theme";

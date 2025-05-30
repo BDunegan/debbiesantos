@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
-import { Button } from "@/components/atomic/Button";
+import Button from "@/components/atomic/Button";
 import CallToAction from "@/components/atomic/CallToAction";
 
 const Section = styled.section`
