@@ -36,12 +36,12 @@ const FAQItem = styled.div`
   }
 `;
 
-const Question = styled.div<{ isOpen: boolean }>`
+const Question = styled.div<{ $isOpen: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.accent};
   font-weight: 600;
   padding: ${({ theme }) => theme.space.sm} 0;
   transition: color 0.3s ease;
@@ -51,18 +51,18 @@ const Question = styled.div<{ isOpen: boolean }>`
   }
 
   &::after {
-    content: '${({ isOpen }) => isOpen ? '−' : '+'}';
+    content: '${({ $isOpen }) => $isOpen ? '−' : '+'}';
     font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.purple};
+    color: ${({ theme }) => theme.colors.accent};
   }
 `;
 
-const Answer = styled.div<{ isOpen: boolean }>`
-  max-height: ${({ isOpen }) => (isOpen ? '500px' : '0')};
+const Answer = styled.div<{ $isOpen: boolean }>`
+  max-height: ${({ $isOpen }) => ($isOpen ? '500px' : '0')};
   overflow: hidden;
   transition: all 0.3s ease;
-  padding: ${({ isOpen, theme }) => (isOpen ? theme.space.md : '0')} 0;
-  color: ${({ theme }) => theme.colors.neutral700};
+  padding: ${({ $isOpen, theme }) => ($isOpen ? theme.space.md : '0')} 0;
+  color: ${({ theme }) => theme.colors.text};
   line-height: 1.7;
 `;
 
@@ -102,10 +102,10 @@ export default function FAQSection() {
       <ContentWrapper>
         {faqs.map((faq, index) => (
           <FAQItem key={index} onClick={() => toggleFAQ(index)}>
-            <Question isOpen={openIndex === index}>
+            <Question $isOpen={openIndex === index}>
               {faq.question}
             </Question>
-            <Answer isOpen={openIndex === index}>
+            <Answer $isOpen={openIndex === index}>
               {faq.answer}
             </Answer>
           </FAQItem>

@@ -56,7 +56,7 @@ const ServiceColumn = styled.div`
     &:not(:first-child)::before {
       display: none;
     }
-    border-bottom: 2px solid ${({ theme }) => theme.colors.purpleLight};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.maroon};
     padding-bottom: ${({ theme }) => theme.space.xl};
 
     &:last-child {
@@ -67,7 +67,7 @@ const ServiceColumn = styled.div`
 
 const CategoryTitle = styled.h3`
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.md};
   font-weight: 600;
 `;
@@ -86,50 +86,66 @@ const ListItem = styled.li`
   align-items: flex-start;
   gap: ${({ theme }) => theme.space.sm};
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.neutral700};
+  color: ${({ theme }) => theme.colors.text};
   line-height: 1.5;
   position: relative;
   padding-left: ${({ theme }) => theme.space.lg};
 
   &::before {
-    content: '';
+    content: '•';
     position: absolute;
     left: 0;
-    top: 8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.colors.purpleLight};
+    top: 0;
+    color: ${({ theme }) => theme.colors.maroon};
+    font-size: 1.2em;
   }
 `;
 
 const services = {
-  individual: [
-    "Addiction And Recovery",
-    "Depression And Anxiety",
-    "Eating Disorders",
-    "Grief and Loss",
-    "Panic Attacks and Panic Disorder",
-    "Phobias",
-    "Stress Management"
+  certifications: [
+    "EMDR (Eye Movement Desensitization Reprocessing) Therapy",
+    "CCATP (Certified Clinical Anxiety Treatment Professional)",
+    "CCTP (Certified Clinical Trauma Professional)",
+    "American School Counseling Association Bullying Prevention Specialist",
+    "American School Counseling Association Mental Health Specialist",
+    "American School Counseling Association Trauma and Crisis Management",
+    "Youth Mental Health First Aid"
   ],
-  relationships: [
-    "Couples Counseling",
-    "Family Therapy",
-    "Conflict Resolution",
-    "Intimacy and Relationship Issues",
-    "Communication Skills",
-    "Trust Building",
-    "Blended Family Support"
+  approaches: [
+    "Cognitive-Behavioral (CBT)",
+    "Eye Movement Desensitization Reprocessing (EMDR)",
+    "Mindfulness-Based Cognitive Therapy",
+    "Person-Centered",
+    "Psychoeducational",
+    "Solution-Focused Brief (SFBT)",
+    "Strength-Based",
+    "Trauma Focused",
+    "Eclectic",
+    "Holistic"
   ],
-  professional: [
-    "Work and Career Issues",
-    "Professional Development",
-    "Work-Life Balance",
-    "Leadership Skills",
-    "Team Dynamics",
-    "Career Transitions",
-    "Burnout Prevention"
+  specialties: [
+    "Anxiety",
+    "Trauma",
+    "Pre-teens/Teens",
+    "ADHD",
+    "Anger Management",
+    "Behavioral Issues",
+    "Coping Skills",
+    "Depression",
+    "Divorce",
+    "Emotional Disturbance",
+    "Grief",
+    "Life Transitions",
+    "Interpersonal Communication",
+    "Parenting",
+    "Peer relationships",
+    "Relationship Issues",
+    "School Issues",
+    "Self Esteem",
+    "Self-Harming",
+    "Stress",
+    "Suicide Ideations",
+    "LGBTQIA+"
   ]
 };
 
@@ -139,25 +155,25 @@ export default function ServicesList() {
       <Title>Our Services</Title>
       <ContentWrapper>
         <ServiceColumn>
-          <CategoryTitle>Individual Counseling</CategoryTitle>
+          <CategoryTitle>Certifications & Training</CategoryTitle>
           <List>
-            {services.individual.map((service) => (
+            {services.certifications.map((service) => (
               <ListItem key={service}>{service}</ListItem>
             ))}
           </List>
         </ServiceColumn>
         <ServiceColumn>
-          <CategoryTitle>Relationships</CategoryTitle>
+          <CategoryTitle>Treatment Approaches</CategoryTitle>
           <List>
-            {services.relationships.map((service) => (
+            {services.approaches.map((service) => (
               <ListItem key={service}>{service}</ListItem>
             ))}
           </List>
         </ServiceColumn>
         <ServiceColumn>
-          <CategoryTitle>Professional Development</CategoryTitle>
+          <CategoryTitle>Specialties & Concerns</CategoryTitle>
           <List>
-            {services.professional.map((service) => (
+            {services.specialties.map((service) => (
               <ListItem key={service}>{service}</ListItem>
             ))}
           </List>

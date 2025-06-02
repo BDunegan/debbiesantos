@@ -169,8 +169,8 @@ export default function Header() {
         <LogoImage
           src="/logo.jpg"
           alt="Debbie Santos Logo"
-          width={200}
-          height={50}
+          width={250}
+          height={75}
           priority
         />
         Debbie Santos

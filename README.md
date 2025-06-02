@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Editing & Maintaining the Site
 
-- All pages are in `/app/` (Home, About, Services, Contact, Policies).
+- All pages are in `/app/` (Home, About, Services, Contact).
 - Shared layout/components are in `/components/`.
 - Theme and global styles are in `/lib/`.
 - To add images, place them in `/public/` and use the `next/image` component.

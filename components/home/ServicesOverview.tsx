@@ -29,7 +29,7 @@ const ServicesList = styled.div`
   margin-bottom: ${({ theme }) => theme.space.lg};
   padding: 0 ${({ theme }) => theme.space.sm};
   width: 100%;
-  max-width: 1200px;
+  max-width: 80vw;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -39,7 +39,7 @@ const ServiceCard = styled(Card)<{ bg?: string }>`
   background: ${({ bg, theme }) => bg ? `linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.55)), url('${bg}') center/cover no-repeat` : theme.colors.white};
   background-blend-mode: lighten;
   text-align: center;
-  color: ${({ theme }) => theme.colors.neutral900};
+  color: ${({ theme }) => theme.colors.text};
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
@@ -89,25 +89,11 @@ const ServiceTitle = styled.h3`
 
 const ServiceDescription = styled.p`
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.neutral700};
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: ${({ theme }) => theme.space.md};
   line-height: 1.6;
 `;
 
-const ServiceLink = styled(Link)`
-  display: inline-block;
-  padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.lg};
-  background: ${({ theme }) => theme.colors.maroon};
-  color: white;
-  text-decoration: none;
-  border-radius: ${({ theme }) => theme.radius.md};
-  transition: background-color 0.3s ease;
-  margin-top: auto;
-
-  &:hover {
-    background: ${({ theme }) => theme.colors.purple};
-  }
-`;
 
 const services = [
   {
@@ -115,18 +101,6 @@ const services = [
     description: "Personalized therapy sessions focused on your unique needs and goals.",
     image: "/mountain.jpg",
     link: "/services#individual"
-  },
-  {
-    title: "Couples & Family Therapy",
-    description: "Strengthen relationships and improve communication within your family unit.",
-    image: "/forest.jpg",
-    link: "/services#couples"
-  },
-  {
-    title: "Workshops & Groups",
-    description: "Join supportive group sessions and educational workshops for shared growth.",
-    image: "/sunset.jpg",
-    link: "/services#groups"
   }
 ];
 
@@ -140,14 +114,11 @@ export default function ServicesOverview() {
             <ServiceContent>
               <ServiceTitle>{service.title}</ServiceTitle>
               <ServiceDescription>{service.description}</ServiceDescription>
-              <ServiceLink href={service.link}>
-                Learn More
-              </ServiceLink>
             </ServiceContent>
           </ServiceCard>
         ))}
       </ServicesList>
-      <Button as="a" href="/services" variant="secondary">
+      <Button as="a" href="/services">
         View All Services
       </Button>
     </Section>

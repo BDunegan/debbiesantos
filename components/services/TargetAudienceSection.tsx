@@ -67,7 +67,7 @@ const AudienceColumn = styled.div`
 
 const ColumnTitle = styled.h3`
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.purple};
+  color: ${({ theme }) => theme.colors.purpleLight};
   margin-bottom: ${({ theme }) => theme.space.md};
   font-weight: 600;
 `;
@@ -75,7 +75,7 @@ const ColumnTitle = styled.h3`
 const Text = styled.p`
   font-size: ${({ theme }) => theme.font.size};
   line-height: 1.7;
-  color: ${({ theme }) => theme.colors.neutral700};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 const audiences = [
