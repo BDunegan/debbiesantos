@@ -67,11 +67,12 @@ const SectionTitle = styled.h3`
 
 const ContactInfo = styled.address`
   font-style: normal;
-  line-height: 1.8;
-  font-size: 0.98em;
+  line-height: ${({ theme }) => theme.font.lineHeight.relaxed};
+  font-size: ${({ theme }) => theme.font.size.sm};
 
   strong {
-    font-size: 1.05em;
+    font-size: ${({ theme }) => theme.font.size.md};
+    font-weight: ${({ theme }) => theme.font.weight.semibold};
     display: block;
     margin-bottom: ${({ theme }) => theme.space.xs};
   }
@@ -80,8 +81,8 @@ const ContactInfo = styled.address`
     color: ${({ theme }) => theme.colors.white};
     text-decoration: underline;
     &:hover, &:focus {
-      color: ${({ theme }) => theme.colors.accent};
-      text-decoration-color: ${({ theme }) => theme.colors.accent};
+      color: ${({ theme }) => theme.colors.purpleAccent};
+      text-decoration-color: ${({ theme }) => theme.colors.purpleAccent};
     }
   }
 `;
@@ -99,11 +100,12 @@ const NavLinkItem = styled.li`
   a {
     color: ${({ theme }) => theme.colors.white};
     text-decoration: none;
-    font-size: 1em;
+    font-size: ${({ theme }) => theme.font.size.sm};
+    font-weight: ${({ theme }) => theme.font.weight.medium};
     padding: 0.25em 0;
     &:hover, &:focus {
       text-decoration: underline;
-      color: ${({ theme }) => theme.colors.accent};
+      color: ${({ theme }) => theme.colors.purpleAccent};
     }
   }
 `;
@@ -125,17 +127,17 @@ const PaymentImage = styled(Image)`
 `;
 
 const PaymentNote = styled.p`
-  font-size: 0.95em;
-  line-height: 1.6;
-  color: ${({ theme }) => theme.colors.textLight};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  line-height: ${({ theme }) => theme.font.lineHeight.normal};
+  color: ${({ theme }) => theme.colors.neutral300};
   margin: 0;
 `;
 
 const Copyright = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 0.9em;
-  color: ${({ theme }) => theme.colors.textLight};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  color: ${({ theme }) => theme.colors.neutral300};
   padding-top: ${({ theme }) => theme.space.lg};
   margin-top: 0;
   letter-spacing: 0.01em;

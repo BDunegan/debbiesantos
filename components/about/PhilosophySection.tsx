@@ -25,10 +25,12 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size['2xl']};
   color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.xl};
   text-align: center;
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.lineHeight.tight};
 `;
 
 const PhilosophyColumn = styled.div`
@@ -67,15 +69,16 @@ const PhilosophyColumn = styled.div`
 `;
 
 const ColumnTitle = styled.h3`
-  font-size: ${({ theme }) => theme.font.size};
+  font-size: ${({ theme }) => theme.font.size.lg};
   color: ${({ theme }) => theme.colors.purple};
   margin-bottom: ${({ theme }) => theme.space.md};
-  font-weight: 600;
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.lineHeight.tight};
 `;
 
 const Text = styled.p`
-  font-size: ${({ theme }) => theme.font.size};
-  line-height: 1.7;
+  font-size: ${({ theme }) => theme.font.size.md};
+  line-height: ${({ theme }) => theme.font.lineHeight.relaxed};
   color: ${({ theme }) => theme.colors.neutral700};
 `;
 

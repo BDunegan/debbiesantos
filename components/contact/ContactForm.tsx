@@ -19,17 +19,26 @@ const FormGroup = styled.div`
 `;
 
 const Label = styled.label`
-  font-size: ${({ theme }) => theme.font.size};
+  font-size: ${({ theme }) => theme.font.size.md};
   color: ${({ theme }) => theme.colors.purple};
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.font.weight.medium};
 `;
 
 const Input = styled.input`
   padding: ${({ theme }) => theme.space.md};
   border: 2px solid ${({ theme }) => theme.colors.purpleLight};
   border-radius: ${({ theme }) => theme.radius.md};
-  font-size: ${({ theme }) => theme.font.size};
+  font-size: ${({ theme }) => theme.font.size.md};
+  line-height: ${({ theme }) => theme.font.lineHeight.normal};
   transition: all 0.3s ease;
+  font-family: ${({ theme }) => theme.font.base};
+  color: ${({ theme }) => theme.colors.text};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral500};
+    font-family: ${({ theme }) => theme.font.base};
+    font-size: ${({ theme }) => theme.font.size.md};
+  }
 
   &:focus {
     outline: none;
@@ -42,10 +51,19 @@ const TextArea = styled.textarea`
   padding: ${({ theme }) => theme.space.md};
   border: 2px solid ${({ theme }) => theme.colors.purpleLight};
   border-radius: ${({ theme }) => theme.radius.md};
-  font-size: ${({ theme }) => theme.font.size};
+  font-size: ${({ theme }) => theme.font.size.md};
+  line-height: ${({ theme }) => theme.font.lineHeight.normal};
   min-height: 150px;
   resize: vertical;
   transition: all 0.3s ease;
+  font-family: ${({ theme }) => theme.font.base};
+  color: ${({ theme }) => theme.colors.text};
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.neutral500};
+    font-family: ${({ theme }) => theme.font.base};
+    font-size: ${({ theme }) => theme.font.size.md};
+  }
 
   &:focus {
     outline: none;

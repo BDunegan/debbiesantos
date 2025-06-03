@@ -18,7 +18,11 @@ const HeaderContainer = styled.header`
   transform: translateX(-50%);
   width: 80vw;
   height: ${HEADER_HEIGHT};
-  background: ${({ theme }) => theme.colors.maroon};
+  background: linear-gradient(
+    ${({ theme }) => theme.colors.maroonDark} 0%,
+    ${({ theme }) => theme.colors.maroon} 100%,
+    ${({ theme }) => theme.colors.maroonDark} 100%
+  );
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   z-index: 1000;
   display: flex;
@@ -41,29 +45,30 @@ const Logo = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.white};
   font-weight: 600;
-  font-size: ${({ theme }) => theme.font.subheading};
-  transition: opacity 0.2s ease;
+  font-size: ${({ theme }) => theme.font.size['2xl']};
+  transition: all 0.3s ease;
   gap: ${({ theme }) => theme.space.sm};
-
-  &:hover {
-    opacity: 0.9;
-  }
+  padding: ${({ theme }) => theme.space.sm};
+  border-radius: ${({ theme }) => theme.radius.md};
+  background: ${({ theme }) => `${theme.colors.maroonDark}40`};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    font-size: ${({ theme }) => theme.font.size};
+    font-size: ${({ theme }) => theme.font.size.lg};
   }
 `;
 
 const LogoImage = styled(Image)`
-  border-radius: ${({ theme }) => theme.radius.sm};
-  background: ${({ theme }) => theme.colors.white};
-  object-fit: contain;
+  object-fit: cover;
+  transition: all 0.3s ease;
+  height: 100%;
+  border-radius: 20%;
+  overflow: hidden;
 `;
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.space.md};
+  gap: ${({ theme }) => theme.space.xl};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     position: fixed;
@@ -72,9 +77,10 @@ const Nav = styled.nav`
     transform: translateX(-50%) translateY(-100%);
     width: 80vw;
     background: ${({ theme }) => theme.colors.maroon};
-    padding: ${({ theme }) => theme.space.md};
+    padding: ${({ theme }) => theme.space.lg};
     flex-direction: column;
     align-items: center;
+    gap: ${({ theme }) => theme.space.lg};
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -92,29 +98,44 @@ const Nav = styled.nav`
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.colors.white};
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-size: ${({ theme }) => theme.font.size.sm};
   position: relative;
-  padding: 0.5rem 0;
+  padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.md};
+  border-radius: ${({ theme }) => theme.radius.md};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: ${({ theme }) => `${theme.colors.white}15`};
+    transform: translateY(-2px);
+  }
 
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
     width: 0;
     height: 2px;
     background: ${({ theme }) => theme.colors.white};
-    transition: width 0.3s ease;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
   }
 
   &:hover::after {
-    width: 100%;
+    width: 80%;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    font-size: 1.1rem;
-    padding: ${({ theme }) => theme.space.sm} 0;
+    font-size: ${({ theme }) => theme.font.size.md};
+    padding: ${({ theme }) => theme.space.md};
+    width: 100%;
+    text-align: center;
+
+    &:hover {
+      transform: none;
+      background: ${({ theme }) => `${theme.colors.white}10`};
+    }
   }
 `;
 
@@ -123,7 +144,7 @@ const MenuButton = styled.button`
   background: none;
   border: none;
   color: ${({ theme }) => theme.colors.white};
-  font-size: 1.5rem;
+  font-size: ${({ theme }) => theme.font.size.xl};
   cursor: pointer;
   padding: 0.5rem;
   transition: opacity 0.2s ease;
@@ -174,7 +195,7 @@ export default function Header() {
           priority
         />
         Debbie Santos
-        </Logo>
+      </Logo>
       <MenuButton
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
@@ -184,10 +205,10 @@ export default function Header() {
       </MenuButton>
       <Nav ref={navRef} className={isMenuOpen ? "open" : ""} aria-label="Main navigation">
         <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
-    </Nav>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/services">Services</NavLink>
+        <NavLink href="/contact">Contact</NavLink>
+      </Nav>
     </HeaderContainer>
   );
-} 
+}

@@ -85,9 +85,9 @@ const ListItem = styled.li`
   display: flex;
   align-items: flex-start;
   gap: ${({ theme }) => theme.space.sm};
-  font-size: ${({ theme }) => theme.font.size};
+  font-size: ${({ theme }) => theme.font.size.md};
   color: ${({ theme }) => theme.colors.text};
-  line-height: 1.5;
+  line-height: ${({ theme }) => theme.font.lineHeight.relaxed};
   position: relative;
   padding-left: ${({ theme }) => theme.space.lg};
 

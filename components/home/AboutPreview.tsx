@@ -24,7 +24,7 @@ const CardWithBg = styled.div`
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  min-height: 50vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,10 +37,24 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
 `;
 
+const PrayerCard = styled(Card)`
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0.65)
+  );
+  padding: ${({ theme }) => theme.space.md};
+  border-radius: ${({ theme }) => theme.radius.lg};
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(12px);
+  max-width: 20vw;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
 const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.subheading};
   margin-bottom: ${({ theme }) => `calc(${theme.space.md} * 2)`};
-  color: white;
+  color: ${({ theme }) => theme.colors.maroon};
 `;
 
 const PrayerText = styled.p`
@@ -48,6 +62,7 @@ const PrayerText = styled.p`
   line-height: 2;
   white-space: pre-line;
   margin: 0;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export default function AboutPreview() {
@@ -55,12 +70,15 @@ export default function AboutPreview() {
     <Section>
       <CardWithBg>
         <ContentWrapper>
-          <Title>Serenity Prayer</Title>
-          <PrayerText>
-            God, grant me the serenity to accept the things I cannot change,
-            the courage to change the things I can,
-            and the wisdom to know the difference.
-          </PrayerText>
+          <PrayerCard>
+            <Title>Serenity Prayer</Title>
+            <PrayerText>
+              God,
+              grant me the serenity to accept the things I cannot change,
+              the courage to change the things I can,
+              and the wisdom to know the difference.
+            </PrayerText>
+          </PrayerCard>
         </ContentWrapper>
       </CardWithBg>
     </Section>
