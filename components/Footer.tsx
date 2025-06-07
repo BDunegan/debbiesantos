@@ -25,7 +25,7 @@ const FooterWrapper = styled.footer`
     gap: 0;
     align-items: flex-start;
     justify-items: center;
-    border-top: 2px solid ${({ theme }) => theme.colors.accent};
+    border-top: 2px solid ${({ theme }) => theme.colors.purpleAccent};
     padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.xl};
   }
 `;
@@ -47,22 +47,16 @@ const FooterColumn = styled.div`
   }
 `;
 
-const Divider = styled.hr`
-  width: 100%;
-  border: none;
-  border-top: 1.5px solid ${({ theme }) => theme.colors.accent};
-  margin: ${({ theme }) => theme.space.lg} 0;
-`;
-
 const SectionTitle = styled.h3`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size.xl};
   color: ${({ theme }) => theme.colors.white};
   margin-bottom: ${({ theme }) => theme.space.md};
   padding-bottom: ${({ theme }) => theme.space.sm};
   font-weight: 600;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    border-bottom: 1.5px solid ${({ theme }) => theme.colors.accent};
+    border-bottom: 1.5px solid ${({ theme }) => theme.colors.purpleAccent};
+  }
 `;
 
 const ContactInfo = styled.address`
@@ -143,11 +137,35 @@ const Copyright = styled.div`
   letter-spacing: 0.01em;
 `;
 
+const SocialLinks = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.space.md};
+  margin-top: ${({ theme }) => theme.space.md};
+`;
+
+const SocialLink = styled.a`
+  color: ${({ theme }) => theme.colors.white};
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.font.size.sm};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  padding: 0.25em 0;
+  &:hover, &:focus {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.purpleAccent};
+  }
+`;
+
+const SocialIcon = styled(Image)`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+`;
+
 const Footer: React.FC = () => (
   <FooterWrapper>
     <FooterColumn>
       <SectionTitle>Contact Information</SectionTitle>
-      <ContactInfo>
+    <ContactInfo>
         <strong>Debra (Debbie) Santos, MS, LPC</strong>
         BART Counseling, LLC<br />
         16864 Royal Crest Drive<br />
@@ -157,7 +175,7 @@ const Footer: React.FC = () => (
         <a href="https://www.bartcounseling.com/" target="_blank" rel="noopener noreferrer">
           bartcounseling.com
         </a>
-      </ContactInfo>
+    </ContactInfo>
     </FooterColumn>
 
     <FooterColumn>
@@ -168,6 +186,17 @@ const Footer: React.FC = () => (
         <NavLinkItem><Link href="/services">Services</Link></NavLinkItem>
         <NavLinkItem><Link href="/contact">Contact</Link></NavLinkItem>
       </NavLinks>
+      <SocialLinks>
+        <SocialLink href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon src="/facebook.png" alt="Facebook" width={24} height={24} />
+        </SocialLink>
+        <SocialLink href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon src="/twitter.png" alt="X / Twitter" width={24} height={24} />
+        </SocialLink>
+        <SocialLink href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <SocialIcon src="/instagram.png" alt="Instagram" width={24} height={24} />
+        </SocialLink>
+      </SocialLinks>
       <Copyright>
         &copy; {new Date().getFullYear()} Debbie Santos. All rights reserved.
       </Copyright>

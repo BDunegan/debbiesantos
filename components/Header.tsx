@@ -70,25 +70,20 @@ const Nav = styled.nav`
   align-items: center;
   gap: ${({ theme }) => theme.space.xl};
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
-    position: fixed;
-    top: ${HEADER_HEIGHT};
-    left: 50%;
-    transform: translateX(-50%) translateY(-100%);
-    width: 80vw;
+  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    width: 100%;
     background: ${({ theme }) => theme.colors.maroon};
-    padding: ${({ theme }) => theme.space.lg};
+    padding: ${({ theme }) => theme.space.lg} 0;
     flex-direction: column;
     align-items: center;
     gap: ${({ theme }) => theme.space.lg};
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 20px 20px;
+    box-shadow: none;
+    border-radius: 0;
 
     &.open {
-      transform: translateX(-50%) translateY(0);
       opacity: 1;
       visibility: visible;
     }
@@ -126,7 +121,7 @@ const NavLink = styled(Link)`
     width: 80%;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     font-size: ${({ theme }) => theme.font.size.md};
     padding: ${({ theme }) => theme.space.md};
     width: 100%;
@@ -153,7 +148,7 @@ const MenuButton = styled.button`
     opacity: 0.8;
   }
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     display: block;
   }
 `;
@@ -195,7 +190,7 @@ export default function Header() {
           priority
         />
         Debbie Santos
-      </Logo>
+        </Logo>
       <MenuButton
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
@@ -205,10 +200,10 @@ export default function Header() {
       </MenuButton>
       <Nav ref={navRef} className={isMenuOpen ? "open" : ""} aria-label="Main navigation">
         <NavLink href="/">Home</NavLink>
-        <NavLink href="/about">About</NavLink>
-        <NavLink href="/services">Services</NavLink>
-        <NavLink href="/contact">Contact</NavLink>
-      </Nav>
+          <NavLink href="/about">About</NavLink>
+          <NavLink href="/services">Services</NavLink>
+          <NavLink href="/contact">Contact</NavLink>
+    </Nav>
     </HeaderContainer>
   );
-}
+} 

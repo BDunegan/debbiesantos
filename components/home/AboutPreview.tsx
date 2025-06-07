@@ -28,6 +28,11 @@ const CardWithBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    padding: ${({ theme }) => theme.space.lg};
+    min-height: 50vh;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -39,30 +44,44 @@ const ContentWrapper = styled.div`
 
 const PrayerCard = styled(Card)`
   background: linear-gradient(
-    rgba(255, 255, 255, 0.75),
-    rgba(255, 255, 255, 0.65)
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.7)
   );
-  padding: ${({ theme }) => theme.space.md};
+  padding: ${({ theme }) => theme.space.lg};
   border-radius: ${({ theme }) => theme.radius.lg};
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(12px);
-  max-width: 20vw;
+  max-width: 480px;
+  width: 100%;
   margin: 0 auto;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    max-width: 95vw;
+    padding: ${({ theme }) => theme.space.md};
+  }
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size.xl};
   margin-bottom: ${({ theme }) => `calc(${theme.space.md} * 2)`};
   color: ${({ theme }) => theme.colors.maroon};
 `;
 
 const PrayerText = styled.p`
-  font-size: ${({ theme }) => `calc(${theme.font.size} * 1.2)`};
+  font-size: ${({ theme }) => theme.font.size.md};
   line-height: 2;
   white-space: pre-line;
   margin: 0;
   color: ${({ theme }) => theme.colors.text};
+  text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.sm};
+  }
 `;
 
 export default function AboutPreview() {
