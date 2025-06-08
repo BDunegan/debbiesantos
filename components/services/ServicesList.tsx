@@ -12,7 +12,7 @@ const Section = styled.section`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size['2xl']};
   color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.xl};
   text-align: center;
@@ -102,16 +102,7 @@ const ListItem = styled.li`
 `;
 
 const services = {
-  certifications: [
-    "EMDR (Eye Movement Desensitization Reprocessing) Therapy",
-    "CCATP (Certified Clinical Anxiety Treatment Professional)",
-    "CCTP (Certified Clinical Trauma Professional)",
-    "American School Counseling Association Bullying Prevention Specialist",
-    "American School Counseling Association Mental Health Specialist",
-    "American School Counseling Association Trauma and Crisis Management",
-    "Youth Mental Health First Aid"
-  ],
-  approaches: [
+  treatmentApproach: [
     "Cognitive-Behavioral (CBT)",
     "Eye Movement Desensitization Reprocessing (EMDR)",
     "Mindfulness-Based Cognitive Therapy",
@@ -127,8 +118,13 @@ const services = {
     "Anxiety",
     "Trauma",
     "Pre-teens/Teens",
+    "Serving children (8-12), teens, and adults",
+    "Offering telehealth and in-person appointments"
+  ],
+  concerns: [
     "ADHD",
     "Anger Management",
+    "Anxiety",
     "Behavioral Issues",
     "Coping Skills",
     "Depression",
@@ -137,6 +133,7 @@ const services = {
     "Grief",
     "Life Transitions",
     "Interpersonal Communication",
+    "Mindfulness",
     "Parenting",
     "Peer relationships",
     "Relationship Issues",
@@ -144,6 +141,7 @@ const services = {
     "Self Esteem",
     "Self-Harming",
     "Stress",
+    "Trauma",
     "Suicide Ideations",
     "LGBTQIA+"
   ]
@@ -155,25 +153,25 @@ export default function ServicesList() {
       <Title>Our Services</Title>
       <ContentWrapper>
         <ServiceColumn>
-          <CategoryTitle>Certifications & Training</CategoryTitle>
+          <CategoryTitle>Treatment Approach</CategoryTitle>
           <List>
-            {services.certifications.map((service) => (
+            {services.treatmentApproach.map((service) => (
               <ListItem key={service}>{service}</ListItem>
             ))}
           </List>
         </ServiceColumn>
         <ServiceColumn>
-          <CategoryTitle>Treatment Approaches</CategoryTitle>
-          <List>
-            {services.approaches.map((service) => (
-              <ListItem key={service}>{service}</ListItem>
-            ))}
-          </List>
-        </ServiceColumn>
-        <ServiceColumn>
-          <CategoryTitle>Specialties & Concerns</CategoryTitle>
+          <CategoryTitle>Specialties</CategoryTitle>
           <List>
             {services.specialties.map((service) => (
+              <ListItem key={service}>{service}</ListItem>
+            ))}
+          </List>
+        </ServiceColumn>
+        <ServiceColumn>
+          <CategoryTitle>Concerns</CategoryTitle>
+          <List>
+            {services.concerns.map((service) => (
               <ListItem key={service}>{service}</ListItem>
             ))}
           </List>

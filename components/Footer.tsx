@@ -18,6 +18,17 @@ const FooterWrapper = styled.footer`
   flex-direction: column;
   gap: ${({ theme }) => theme.space.lg};
   align-items: center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, ${({ theme }) => theme.colors.white}, transparent);
+  }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: grid;
@@ -25,7 +36,6 @@ const FooterWrapper = styled.footer`
     gap: 0;
     align-items: flex-start;
     justify-items: center;
-    border-top: 2px solid ${({ theme }) => theme.colors.purpleAccent};
     padding: ${({ theme }) => theme.space.xl} ${({ theme }) => theme.space.xl};
   }
 `;
@@ -207,8 +217,7 @@ const Footer: React.FC = () => (
       <PaymentSection>
         <PaymentImage src="/cards.jpg" alt="Accepted payment cards" width={300} height={100} />
         <PaymentNote>
-          I take most insurances and some Medicaid plans.<br />
-          For self-pay, I take most credit cards.
+          I accept most insurances under Headway and Sondermind platforms, some Medicaid plans.
         </PaymentNote>
       </PaymentSection>
     </FooterColumn>

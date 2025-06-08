@@ -25,7 +25,7 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size['2xl']};
   color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.xl};
   text-align: center;
@@ -107,18 +107,21 @@ const ListItem = styled.li`
 const qualifications = {
   education: [
     "Master's in Counseling Psychology",
-    "Bachelor's in Psychology",
-    "Advanced Certification in Family Therapy"
+    "Bachelor's in Education"
   ],
   licenses: [
-    "Licensed Professional Counselor (LPC)",
-    "Certified Family Therapist",
-    "State Board Certified"
+    "EMDR (Eye Movement Desensitization Reprocessing) Therapy trained by Compassion Works",
+    "CCATP (Certified Clinical Anxiety Treatment Professional)",
+    "CCTP (Certified Clinical Trauma Professional)",
+    "American School Counseling Association Bullying Prevention Specialist",
+    "American School Counseling Association Mental Health Specialist",
+    "American School Counseling Association Trauma and Crisis Management",
+    "Youth Mental Health First Aid"
   ],
   experience: [
-    "10+ years of clinical experience",
-    "Specialized in trauma-informed care",
-    "Expert in solution-focused therapy"
+    "14+ years of clinical experience",
+    "30 years in an education setting",
+    "Specialized in trauma-informed care"
   ]
 };
 

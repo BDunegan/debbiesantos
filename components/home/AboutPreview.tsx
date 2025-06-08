@@ -90,13 +90,13 @@ export default function AboutPreview() {
       <CardWithBg>
         <ContentWrapper>
           <PrayerCard>
-            <Title>Serenity Prayer</Title>
-            <PrayerText>
+          <Title>Serenity Prayer</Title>
+          <PrayerText>
               God,
               grant me the serenity to accept the things I cannot change,
-              the courage to change the things I can,
-              and the wisdom to know the difference.
-            </PrayerText>
+            the courage to change the things I can,
+            and the wisdom to know the difference.
+          </PrayerText>
           </PrayerCard>
         </ContentWrapper>
       </CardWithBg>

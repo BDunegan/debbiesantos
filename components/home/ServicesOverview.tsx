@@ -16,7 +16,7 @@ const Section = styled.section`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size['2xl']};
   margin-bottom: ${({ theme }) => theme.space.md};
   color: ${({ theme }) => theme.colors.maroon};
 `;
@@ -80,7 +80,7 @@ const ServiceContent = styled.div`
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size.xl};
   color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.md};
 `;
@@ -120,7 +120,7 @@ const SpecialtyItem = styled.li`
   color: ${({ theme }) => theme.colors.maroon};
   padding: ${({ theme }) => `${theme.space.xs} ${theme.space.sm}`};
   border-radius: ${({ theme }) => theme.radius.lg};
-  font-size: ${({ theme }) => theme.font.small};
+  font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: 500;
 `;
 
@@ -139,10 +139,16 @@ const services = [
   {
     title: "Expert Approach",
     specialties: [
-      "EMDR Therapy",
-      "Trauma-Informed Care",
-      "Anxiety Treatment",
-      "Solution-Focused Therapy"
+      "Cognitive-Behavioral (CBT)",
+      "Eye Movement Desensitization Reprocessing (EMDR)",
+      "Mindfulness-Based Cognitive Therapy",
+      "Person-Centered",
+      "Psychoeducational",
+      "Solution-Focused Brief (SFBT)",
+      "Strength-Based",
+      "Trauma Focused",
+      "Eclectic",
+      "Holistic"
     ],
     image: "/mountain.jpg",
     link: "/services#approach"
@@ -187,6 +193,9 @@ export default function ServicesOverview() {
         </DescriptionText>
         <DescriptionText>
           As a certified trauma professional and anxiety treatment specialist, I create a safe, non-judgmental space where you can explore your thoughts and feelings freely. Together, we'll work to identify practical solutions and strategies that help you overcome challenges and achieve your personal growth goals.
+        </DescriptionText>
+        <DescriptionText>
+          I focus on serving children (8-12), teens, and adults, and offering telehealth and in-person appointments
         </DescriptionText>
       </DescriptionBlock>
     </Section>

@@ -12,7 +12,7 @@ const Section = styled.section`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ theme }) => theme.font.subheading};
+  font-size: ${({ theme }) => theme.font.size['2xl']};
   color: ${({ theme }) => theme.colors.maroon};
   margin-bottom: ${({ theme }) => theme.space.xl};
   text-align: center;
@@ -41,7 +41,7 @@ const Question = styled.div<{ $isOpen: boolean }>`
   justify-content: space-between;
   align-items: center;
   font-size: ${({ theme }) => theme.font.size};
-  color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.purple};
   font-weight: 600;
   padding: ${({ theme }) => theme.space.sm} 0;
   transition: color 0.3s ease;
@@ -53,7 +53,7 @@ const Question = styled.div<{ $isOpen: boolean }>`
   &::after {
     content: '${({ $isOpen }) => $isOpen ? '−' : '+'}';
     font-size: 1.5rem;
-    color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.purple};
   }
 `;
 
@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     question: "How long are therapy sessions?",
-    answer: "Standard therapy sessions are 50 minutes long. Extended sessions of 80 minutes are available for couples or when needed. The frequency of sessions is typically weekly, but we can adjust based on your needs and progress."
+    answer: "Standard therapy sessions are 53 minutes long. Extended sessions of 90 minutes are available for EMDR protocols. The frequency of sessions is typically weekly, but we can adjust based on your needs and progress."
   },
   {
     question: "Do you accept insurance?",

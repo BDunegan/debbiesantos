@@ -36,6 +36,7 @@ const HeaderContainer = styled.header`
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 100vw;
     border-radius: 0;
+    padding: 0 ${({ theme }) => theme.space.md};
   }
 `;
 
@@ -45,24 +46,35 @@ const Logo = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.white};
   font-weight: 600;
-  font-size: ${({ theme }) => theme.font.size['2xl']};
-  transition: all 0.3s ease;
-  gap: ${({ theme }) => theme.space.sm};
+  font-size: ${({ theme }) => theme.font.size.xl};
+  gap: ${({ theme }) => theme.space.md};
   padding: ${({ theme }) => theme.space.sm};
-  border-radius: ${({ theme }) => theme.radius.md};
-  background: ${({ theme }) => `${theme.colors.maroonDark}40`};
+  transition: all 0.3s ease;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.lg};
+    gap: ${({ theme }) => theme.space.sm};
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    font-size: ${({ theme }) => theme.font.size.lg};
+    font-size: ${({ theme }) => theme.font.size.md};
   }
 `;
 
 const LogoImage = styled(Image)`
-  object-fit: cover;
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;
   transition: all 0.3s ease;
-  height: 100%;
-  border-radius: 20%;
-  overflow: hidden;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    height: 45px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    height: 35px;
+  }
 `;
 
 const Nav = styled.nav`
@@ -130,7 +142,7 @@ const NavLink = styled(Link)`
     &:hover {
       transform: none;
       background: ${({ theme }) => `${theme.colors.white}10`};
-    }
+  }
   }
 `;
 
@@ -185,12 +197,12 @@ export default function Header() {
         <LogoImage
           src="/logo.jpg"
           alt="Debbie Santos Logo"
-          width={250}
-          height={75}
+          width={200}
+          height={60}
           priority
         />
-        Debbie Santos
-        </Logo>
+        <span>Debbie Santos</span>
+      </Logo>
       <MenuButton
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"
@@ -200,10 +212,10 @@ export default function Header() {
       </MenuButton>
       <Nav ref={navRef} className={isMenuOpen ? "open" : ""} aria-label="Main navigation">
         <NavLink href="/">Home</NavLink>
-          <NavLink href="/about">About</NavLink>
-          <NavLink href="/services">Services</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
-    </Nav>
+        <NavLink href="/about">About</NavLink>
+        <NavLink href="/services">Services</NavLink>
+        <NavLink href="/contact">Contact</NavLink>
+      </Nav>
     </HeaderContainer>
   );
 } 

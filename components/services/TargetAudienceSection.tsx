@@ -84,8 +84,8 @@ const audiences = [
     text: "Adults and teens seeking support for personal growth, mental health, and life transitions."
   },
   {
-    title: "Couples & Families",
-    text: "Partners and families looking to strengthen relationships, improve communication, and resolve conflicts."
+    title: "Children",
+    text: "Children (8-12) seeking support for personal growth, mental health, and life transitions."
   },
   {
     title: "Professionals",
