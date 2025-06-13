@@ -125,6 +125,7 @@ interface FormErrors {
   phone?: string;
   subject?: string;
   message?: string;
+  submit?: string;
 }
 
 export default function ContactForm() {
@@ -183,22 +184,38 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Log form data to console
-      console.log("Form submitted:", formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsSubmitted(true);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        subject: "",
-        message: "",
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
+      setErrors(prev => ({
+        ...prev,
+        submit: "Failed to send message. Please try again later.",
+      }));
     } finally {
       setIsSubmitting(false);
     }
@@ -223,13 +240,80 @@ export default function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <SuccessMessage>
-        <h3>Thank You for Your Message!</h3>
-        <p>
-          I have received your inquiry and will get back to you as soon as possible.
-          Your message details have been logged to the console.
-        </p>
-      </SuccessMessage>
+      <Form onSubmit={handleSubmit}>
+        <SuccessMessage>
+          <h3>Thank You for Your Message!</h3>
+          <p>I can't wait to talk more!</p>
+        </SuccessMessage>
+        <FormGroup>
+          <Label htmlFor="name">Name *</Label>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your full name"
+          />
+          {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="email">Email *</Label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="your.email@example.com"
+          />
+          {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="phone">Phone *</Label>
+          <Input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="+1 (555) 555-5555"
+          />
+          {errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="subject">Subject *</Label>
+          <Input
+            type="text"
+            id="subject"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="What is this regarding?"
+          />
+          {errors.subject && <ErrorMessage>{errors.subject}</ErrorMessage>}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="message">Message *</Label>
+          <TextArea
+            id="message"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Please provide details about your inquiry..."
+          />
+          {errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
+        </FormGroup>
+
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </Button>
+        {errors.submit && <ErrorMessage>{errors.submit}</ErrorMessage>}
+      </Form>
     );
   }
 
@@ -302,6 +386,7 @@ export default function ContactForm() {
       <Button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
+      {errors.submit && <ErrorMessage>{errors.submit}</ErrorMessage>}
     </Form>
   );
 } 
