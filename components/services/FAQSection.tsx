@@ -77,7 +77,7 @@ const faqs = [
   },
   {
     question: "Do you accept insurance?",
-    answer: "I am an out-of-network provider. While I don't directly accept insurance, I can provide you with a superbill that you can submit to your insurance company for potential reimbursement. Please check with your insurance provider about your out-of-network benefits."
+    answer: "I accept most insurances under Headway and Sondermind platforms, some Medicaid plans."
   },
   {
     question: "What is your cancellation policy?",

@@ -158,10 +158,23 @@ const SocialLink = styled.a`
   text-decoration: none;
   font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  padding: 0.25em 0;
-  &:hover, &:focus {
-    text-decoration: underline;
-    color: ${({ theme }) => theme.colors.purpleAccent};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => theme.space.xs};
+  transition: all 0.3s ease;
+  position: relative;
+  width: 32px;
+  height: 32px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 80%;
+    background: ${({ theme }) => theme.colors.white};
+    z-index: 0;
   }
 `;
 
@@ -169,6 +182,8 @@ const SocialIcon = styled(Image)`
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  position: relative;
+  z-index: 1;
 `;
 
 const Footer: React.FC = () => (
@@ -200,8 +215,8 @@ const Footer: React.FC = () => (
         <SocialLink href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
           <SocialIcon src="/facebook.png" alt="Facebook" width={24} height={24} />
         </SocialLink>
-        <SocialLink href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-          <SocialIcon src="/twitter.png" alt="X / Twitter" width={24} height={24} />
+        <SocialLink href="https://www.linkedin.com/in/debbie-santos-35743536b/" target="_blank" rel="noopener noreferrer">
+          <SocialIcon src="/linkedin.png" alt="LinkedIn" width={24} height={24} />
         </SocialLink>
         <SocialLink href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
           <SocialIcon src="/instagram.png" alt="Instagram" width={24} height={24} />
