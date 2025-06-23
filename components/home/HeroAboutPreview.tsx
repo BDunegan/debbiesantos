@@ -46,7 +46,7 @@ const HeroAboutPreview: React.FC = () => {
       <NameTitle>Debbie Santos, MA, LPC</NameTitle>
       <Snippet>
         Guiding you towards growth and well-being with compassionate,
-        solution-focused therapy. Let\'s uncover your true potential.
+        solution-focused therapy. Let's uncover your true potential.
       </Snippet>
     </PreviewWrapper>
   );
