@@ -197,7 +197,7 @@ const Footer: React.FC = () => (
         Houston, TX 77058<br />
         Dickinson, TX<br />
         <a href="tel:2818038155">281-803-8155</a><br />
-        <a href="https://www.bartcounseling.com/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.debbiesantoslpc.com/" target="_blank" rel="noopener noreferrer">
           bartcounseling.com
         </a>
     </ContactInfo>
