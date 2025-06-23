@@ -106,7 +106,7 @@ const ListItem = styled.li`
 
 const qualifications = {
   education: [
-    "Master's in Counseling Psychology",
+    "Master's in Counseling",
     "Bachelor's in Education"
   ],
   licenses: [
