@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     );
 
     const data = await resend.emails.send({
-      from: 'Contact Form <onboarding@resend.dev>',
+      from: 'Contact Form <contact@debbiesantoslpc.com>',
       to: process.env.EMAIL || '',
       subject: `New Contact Form Submission: ${subject}`,
       html: emailHtml,
