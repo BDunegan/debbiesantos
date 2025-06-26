@@ -21,8 +21,9 @@ export async function POST(request: Request) {
     );
 
     const data = await resend.emails.send({
-      from: 'Contact Form <contact@debbiesantoslpc.com>',
-      to: process.env.EMAIL || '',
+      from: 'contact@debbiesantoslpc.com',
+      to: process.env.EMAIL,
+      replyTo: process.env.EMAIL,
       subject: `New Contact Form Submission: ${subject}`,
       html: emailHtml,
     });
