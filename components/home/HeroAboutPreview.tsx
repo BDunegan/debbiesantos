@@ -43,7 +43,7 @@ const HeroAboutPreview: React.FC = () => {
         height={150} // Increased size, assuming square for circular display
         priority
       />
-      <NameTitle>Debbie Santos, MA, LPC</NameTitle>
+      <NameTitle>Debbie Santos, MS, LPC</NameTitle>
       <Snippet>
         Guiding you towards growth and well-being with compassionate,
         solution-focused therapy. Let's uncover your true potential.
