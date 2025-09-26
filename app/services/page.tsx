@@ -3,6 +3,7 @@ import TargetAudienceSection from "@/components/services/TargetAudienceSection";
 import FAQSection from "@/components/services/FAQSection";
 import CallToAction from "@/components/services/CallToAction";
 import PageContainer from "@/components/PageContainer";
+import ResponsiveImage from "@/components/services/ResponsiveImage";
 
 export const metadata = {
   title: "Counseling Services | Debbie Santos Counseling",
@@ -13,6 +14,7 @@ export default function ServicesPage() {
   return (
     <PageContainer>
       <ServicesList />
+      <ResponsiveImage/>
       <TargetAudienceSection />
       <FAQSection />
       <CallToAction />

@@ -83,6 +83,9 @@ const Nav = styled.nav`
   gap: ${({ theme }) => theme.space.xl};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
     background: ${({ theme }) => theme.colors.maroon};
     padding: ${({ theme }) => theme.space.lg} 0;

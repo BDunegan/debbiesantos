@@ -81,6 +81,9 @@ const ImageContainer = styled.div`
   width: 400px;
   flex-shrink: 0;
   margin-top: ${({ theme }) => theme.space.xl};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 300px;
