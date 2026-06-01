@@ -135,6 +135,8 @@ export default function ContactForm() {
     phone: "",
     subject: "",
     message: "",
+    // honeypot field to catch bots; keep empty on legit submissions
+    website: "",
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
@@ -176,6 +178,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check: if the hidden 'website' field is filled, treat as bot and ignore
+    if ((formData as any).website && (formData as any).website.trim() !== "") {
+      // Optionally set a generic success state so user-facing behavior is identical
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      return;
+    }
 
     if (!validateForm()) {
       return;
@@ -319,6 +329,18 @@ export default function ContactForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      {/* Honeypot field - visually hidden but present in DOM for bots */}
+      <input
+        type="text"
+        name="website"
+        value={(formData as any).website}
+        onChange={handleChange}
+        autoComplete="off"
+        tabIndex={-1}
+        style={{ position: 'absolute', left: '-9999px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}
+        aria-hidden="true"
+      />
+
       <FormGroup>
         <Label htmlFor="name">Name *</Label>
         <Input
